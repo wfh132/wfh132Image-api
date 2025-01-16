@@ -6,8 +6,8 @@
 // 如何使用在目录下pc.txt，pe.txt，分别放入图片链接，
 // pe.txt手机设备的链接文件
 // pc.txt电脑设备的链接文件
-define('MOBILE_LINKS_FILE'， 'pe.txt');   // 手机设备的链接文件
-define('DESKTOP_LINKS_FILE'， 'pc.txt');  // 电脑设备的链接文件
+define('MOBILE_LINKS_FILE', 'pe.txt');   // 手机设备的链接文件
+define('DESKTOP_LINKS_FILE', 'pc.txt');  // 电脑设备的链接文件
 
 // 改进后的设备检测函数（基于 User-Agent 和浏览器特征）
 function isMobile() {
@@ -16,17 +16,14 @@ function isMobile() {
 
     // 定义常见移动设备的关键字
     $mobileAgents = [
-        'android'， 'iphone'， 'ipod'， 'blackberry'， 'windows phone'， 'opera mini'， 'mobile'， 
-        'palm'， 'symbian'， 'webos'， 'sony'， 'nokia'， 'samsung'， 'htc'， 'huawei'， 'xiaomi'， 
-        'redmi'， 'vivo'， 'oppo'， 'lenovo'， 'zte'， 'alcatel'， 'meizu'， 'oneplus'， 'motorola'， 
-        'lg'， 'asus'， 'micromax'， 'infinix'， 'tecno'， 'jio'， 'kaios'， 'generic feature phone'
+        'android', 'iphone', 'ipod', 'blackberry', 'windows phone', 'opera mini', 'mobile', 
+        'palm', 'symbian', 'webos', 'sony', 'nokia', 'samsung', 'htc', 'huawei', 'xiaomi', 
+        'redmi', 'vivo', 'oppo', 'lenovo', 'zte', 'alcatel', 'meizu', 'oneplus', 'motorola', 
+        'lg', 'asus', 'micromax', 'infinix', 'tecno', 'jio', 'kaios', 'generic feature phone'
     ];
 
     // 定义平板设备的关键字，用于区分平板和手机
-    $tabletAgents = ['ipad'， 'tablet'， 'kindle'， 'playbook'， 'nexus 7'， 'nexus 10', 'galaxy tab'， 'nook'];
-
-    // 定义常见移动浏览器的关键字
-    $mobileBrowsers = ['mobile safari'， 'mobile chrome'， 'mobile ucbrowser'， 'mobile qqbrowser'， 'samsungbrowser'];
+    $tabletAgents = ['ipad', 'tablet', 'kindle', 'playbook', 'nexus 7', 'nexus 10', 'galaxy tab', 'nook'];
 
     // 检查是否为平板设备，优先排除平板设备
     foreach ($tabletAgents as $tablet) {
@@ -43,10 +40,8 @@ function isMobile() {
     }
 
     // 如果未在设备关键字中找到，进一步检查是否是移动浏览器
-    foreach ($mobileBrowsers as $browser) {
-        if (strpos($userAgent, $browser) !== false) {
-            return true; // 如果匹配到移动浏览器关键字，则视为手机设备
-        }
+    if (strpos($userAgent, 'mobile') !== false) {
+        return true; // 如果匹配到移动浏览器关键字，则视为手机设备
     }
 
     // 如果没有任何匹配，则默认视为电脑设备
